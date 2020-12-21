@@ -20,10 +20,8 @@ export class StudentsComponent implements OnInit {
     this.filteredStudents = this.listFilter ? this.performFilter(this.listFilter) : this.students;
   }
 
-  students: IStudent[] = [];
-  filteredStudents:IStudent[] = [];
-
-
+  students: IStudent[] = []; // List for all studets
+  filteredStudents:IStudent[] = []; // List of chronically absent students
 
   constructor(private studentsService: StudentsService) { }
 
@@ -37,9 +35,9 @@ export class StudentsComponent implements OnInit {
     })
   }
 
+  // Perfom filter based on the attendance percentage (Equal or Below the user input)
   performFilter(filterBy: number): IStudent[] {
     return this.students.filter((student: IStudent) =>
       student.attendancePercentage <= filterBy )
   }
-
 }

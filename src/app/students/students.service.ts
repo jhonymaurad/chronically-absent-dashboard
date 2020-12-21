@@ -15,7 +15,8 @@ export class StudentsService {
 
   constructor(private http:HttpClient) { }
 
-  getStudents():Observable<IStudent[]> {
+// Return an observale with the student's data
+  getStudents():Observable<IStudent[]> { 
     return this.http.get<IStudent[]>(this.studentsUrl)
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
@@ -23,6 +24,7 @@ export class StudentsService {
       );
   }
 
+// Handle errors
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
